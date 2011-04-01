@@ -1,0 +1,69 @@
+1. About Linx
+2. Dependancies.
+3. Installation
+3a. Nsqrand
+3b. Linx
+4. Quick General Usage
+5. Planned updates
+
+1. About Linx
+This is linux only software in source code. The goal of this software is to help teach about encryption algorithms, it is a small chat client that encrypts chat before sending it along a soccket. All written in C.
+I will update it from time to time, so please do not remove my directory again.
+As of time of writing, it should all work, it uses a mixture of my own algorithms mixed with t he popular RSA algorithm, which is hard to crack at higher levels. As time goes on, I'll add new encryptions and commands. Also eventually I'll add a GUI(User interface), although as of now that's not the goal.
+Right now the encryption is the main point of focus, as of now the RSA encryption is a small uncomplicated one, although it may be hard for normal people to crack, any mathematician or good programmer could crack it. This is due to not having a long number system implimented yet(This is coming next, so the encryption will become much MUCH stronger through the next update. I have a lot of print functions stuffed all over the place right now for debugging as this isn't meant for normal usage. 
+I will upload all versions as this progresses, up until the final release, which I am keeping for myself when I master the algorithms and decide to make one of my own. Since I prefer to not have any of you reading what I write or look at the files I send.
+
+2. Dependancies
+This requires the C compiler GCC, as well as a text editor with root privilages.
+
+3. Installation
+3a. Installation of NSQrand(A high quality random number generator) is a must as linx depends on it.
+Go into the directory nsqrand, and type the command below.
+sudo make && sudo make install
+Then open a text editor with root prvilages(sudo gedit, or sudo vim, ect)
+Edit the file /etc/ld.so.conf
+Add this line to the first open space
+include /usr/local/lib
+Then run this command.
+sudo ldconfig
+Doing this installs nsqrand and adds the directory /usr/local/lib to your library path.
+
+3b. Installation of this program(Linx) is simple. Type the below commands.
+First we need to compile it, I have provided a file named "make.c" which installs for you. Just compile that file as below.
+gcc make.c -o compile
+Then you run the newly compiled file
+./compile
+Then it's installed to that directory.
+
+4. Quick general usage
+
+From the last section, you now have two new files inside your directory, named linx & linxserv. linx is the client, and linxserv is the server.
+If you just want to play around then just fire up the program by doing this in different terminal windows.
+Terminal window 1:
+./linxserv
+Terminal window2:
+./linx
+
+Then you should be connected with yourself chatting. If you wish to play with it, with others on your network(You host), then you need to forward the port 38383 to your server host computer. If you want to connect to someone else then add the address as a command when you run the client as shown below
+./linx <address>
+Example
+./linx 192.168.1.45
+If the outside ip address has ports forwarded correctly and the server running, you will connect, if the ip is inside a LAN, no port forwarding is required.
+By default, when you run linx, the address is set to localhost, which is your machine.
+
+As of now, the only command is /user <param>
+Which chooses who you want to talk to, if they are on. 
+Use: /user Max
+This will check if the user Max is online(Case sensitive) and if so, connect to him.
+To exit, type /quit.
+
+5. Planned updates.
+1. Implimentation of the longnum library, which is a custom library written to handle extremely astronomically large numbers. In order to enhance encryption security by enlarging the numbers making it harder to crack.
+
+2. XORing, which is a form of byte shifting. It is the next step in the planned algorithm.
+
+3. An interface, probably either in Ncurses(terminal fancy display), or Gtk(Oh yes, for those users who are helpless without a gui).
+
+4. IDEA and DES algorithm implimentation and testing
+
+
